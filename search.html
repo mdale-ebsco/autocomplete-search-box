@@ -2,20 +2,23 @@
 
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
 </head>
 
 <body>
 
-  <div id="EDS-Search-App">
-    <form id="EDSsearch" action="http://search.ebscohost.com" method="get" target="_blank">
+  <div id="EDS-search">
+    <form id="EDS-search-form" action="http://search.ebscohost.com" method="get" target="_blank">
       <input id="EDS-query" type="text" name="query" value="">
       <button type="submit">Search</button>
     </form>
-    <section id="EDS-results-wrapper"></section>
+    <section id="EDS-autocomplete"></section>
   </div>
 
-  <script id="EDS-Search" data-g=""
-    src="//gss.ebscohost.com/mdale/Phoenix/search.js"></script>
+
+  <script>
+    autocomplete(document.getElementById("EDS-query"));
+  </script>
 </body>
 
 </html>

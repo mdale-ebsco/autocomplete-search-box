@@ -1,5 +1,6 @@
 <?php
-
+  header('Access-Control-Allow-Origin: *');
+  header('Content-Type: application/json; charset=utf-8');
   $url = "https://eds-api.ebscohost.com/AuthService/rest/ipauth";
   $params = array(
     'Options' => ["autocomplete"]
@@ -12,6 +13,7 @@
   curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($session, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
+    'Accept: application/json',
     'Content-Length: ' . strlen($params_string))
   );
 
@@ -19,6 +21,6 @@
   $errors = curl_error($session);
   $http = curl_getinfo($session, CURLINFO_HTTP_CODE);
   curl_close($session);                                  // And close the session
-  $results = json_decode($res, true);
+
   echo $res;
 ?>
