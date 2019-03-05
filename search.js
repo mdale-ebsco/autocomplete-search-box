@@ -4,21 +4,25 @@ $('#EDSsearch').on('submit', function(e){
   searchEDS(query);
 });
 
+var autocompleteToken = "";
 function autocomplete(inp, arr) {
   console.log(inp);
-  authApp();
+  getAutocompleteToken(function(token){
+    autocompleteToken = token;
+    console.log("Autocomplete Token: " + autocompleteToken);
+  });
+
 
 }
 
-function authApp(){
-  console.log("Authenticating");
+function getAutocompleteToken(handleData){
   $.ajax({
     type: "GET",
     url: "https://gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.php",
     timeout: 2000,
     dataType:"json",
     success: function(result){
-      var autoToken = result["Autocomplete"]["Token"];
+      handleData(result.Autocomplete.Token);
     },
     error: function (jqXHR, exception, errorThrown) {
         var msg = '';
