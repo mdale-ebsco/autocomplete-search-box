@@ -1,21 +1,41 @@
 <html>
 
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!--The below file needs to be placed on a server with an IP address registered in EBSCOadmin with a group containing an API profile -->
+  <script src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
+
+  <style>
+  .userprovided {
+    font-weight:bold;
+  }
+  </style>
 </head>
 
 <body>
 
-  <div id="EDS-Search-App">
-    <form id="EDSsearch" action="http://search.ebscohost.com" method="get" target="_blank">
-      <input id="EDS-query" type="text" name="query" value="">
+  <div id="EDS-search">
+    <form id="EDS-search-form" action="http://search.ebscohost.com" method="get" target="_blank">
+      <input name="direct" value="true" type="hidden">
+      <input name="scope" value="site" type="hidden">
+      <input name="site" value="eds-live" type="hidden">
+      <!-- Authentication type -->
+      <input name="authtype" value="ip,guest" type="hidden">
+      <input name="custid" value="uphoenix" type="hidden">
+      <input name="groupid" value="main" type="hidden">
+      <input name="profile" value="eds" type="hidden">
+      <!-- Search box and Submit button -->
+      <input id="EDS-query" type="text" name="bquery" value="">
       <button type="submit">Search</button>
     </form>
-    <section id="EDS-results-wrapper"></section>
+    <section id="EDS-autocomplete"></section>
   </div>
 
-  <script id="EDS-Search" data-g=""
-    src="//gss.ebscohost.com/mdale/Phoenix/search.js"></script>
+
+  <script>
+  </script>
 </body>
 
 </html>
