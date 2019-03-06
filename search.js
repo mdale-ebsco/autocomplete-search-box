@@ -1,9 +1,4 @@
 $( document ).ready(function() {
-  $('#EDSsearch').on('submit', function(e){
-    e.preventDefault();
-    var query = $('#EDS-query').val();
-    searchEDS(query);
-  });
 
   var autocompleteToken = "";
   var custid = "";
@@ -14,12 +9,8 @@ $( document ).ready(function() {
     custid = cid;
     console.log("CustId: " + custid);
 
-    if ( window.jQuery ) {
-      console.log("Jquery loaded");
-
     var cache = {};
     $("#EDS-query").autocomplete({
-         delay: 100,
          minLength: 3,
          source: function(req, resp) {
            var term = req.term;
@@ -28,7 +19,6 @@ $( document ).ready(function() {
              return;
            }
            $.getJSON("https://f9q8ycr499.execute-api.us-east-1.amazonaws.com/dev/auto/" + custid + "/" + autocompleteToken + "/" + req.term, function(json) {
-             console.log(json);
              var result = json;
              cache[ term ] = json;
              if(json.length == 0){
@@ -48,8 +38,6 @@ $( document ).ready(function() {
         .append( "<div>" + item.label + "</div>" )
         .appendTo( ul );
     };
-        }
-
 
   });
 
