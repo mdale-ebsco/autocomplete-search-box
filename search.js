@@ -15,15 +15,6 @@ $( document ).ready(function() {
          $.getJSON("https://f9q8ycr499.execute-api.us-east-1.amazonaws.com/dev/auto/"+ req.term, function(json) {
            var result = json;
            cache[ term ] = json;
-           if(json.length == 0){
-             result = [
-              {
-              label: 'No matches found',
-              value: 0
-              }
-            ];
-            cache[term] = result;
-           }
            resp(result);
          });
        },
