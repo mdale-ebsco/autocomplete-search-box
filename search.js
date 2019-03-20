@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 
+  var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
   var autocompleteToken = "";
-  var custid = "";
 
   var cache = {};
   $(".eds-autocomplete").autocomplete({

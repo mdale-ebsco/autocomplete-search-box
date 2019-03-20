@@ -1,0 +1,42 @@
+body {
+  font-family: Ariel, sans-serif;
+  background:#f2f2f2;
+}
+#EDS-search{
+  width: 30%;
+  position: absolute;
+  top: 30%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+}
+#EDS-search form{
+  width: 100%;
+  position: relative;
+}
+#EDS-search input[type="text"]{
+  float: left;
+  width: 100%;
+  border: 3px solid #0375B4;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  color: #373737;
+}
+#EDS-search button[type="submit"]{
+  position: absolute;
+  right: -80px;
+  width: 75px;
+  height: 29px;
+  border: 1px solid #0375B4;
+  background: #0375B4;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.userprovided {
+  font-weight:bold;
+}
