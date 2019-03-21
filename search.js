@@ -2,7 +2,8 @@ $( document ).ready(function() {
 
   var Facets = {
           RV: "Peer Reviewed Articles",
-          FC: "The Library Catalog"
+          FC: "The Library Catalog",
+          FT: "Full Text"
   };
 
   var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
@@ -43,7 +44,6 @@ $( document ).ready(function() {
          for(var j = 0; j<selectedFilters.length; j++){
            if(selectedFilters[j] == value){
              ui.item.value = result[0].value;
-             console.log(document.getElementById("fname"));
              document.getElementById("fname").value = value;
              document.getElementById("fvalue").value = "Y";
            }
@@ -51,6 +51,9 @@ $( document ).ready(function() {
 
         $(".eds-autocomplete").val(ui.item.value);
         $("#EDS-search-form").submit();
+
+        document.getElementById("fname").value = "";
+        document.getElementById("fvalue").value = "N";
        },
        open: function(event, ui){
          var filterfirst = jQuery(".ui-menu li:first-child" );
