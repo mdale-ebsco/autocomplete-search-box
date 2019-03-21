@@ -8,10 +8,12 @@ $( document ).ready(function() {
 
   var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
   var filters = jQuery("#eds-autocorrect-searchbox").data("f");
-  var selectedFilters = filters.split(',').map(function(item){
-    return item.trim();
-  });
-  console.log(selectedFilters);
+  var selectedFilters = [];
+  if(filters){
+    selectedFilters = filters.split(',').map(function(item){
+      return item.trim();
+    });
+  }
 
   var autocompleteToken = "";
 
