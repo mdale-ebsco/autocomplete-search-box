@@ -32,12 +32,14 @@ $( document ).ready(function() {
          }
          $.getJSON("https://f9q8ycr499.execute-api.us-east-1.amazonaws.com/dev/auto/"+ req.term, function(json) {
            result = json;
+           if(result.length > 0){
            for(var i = 0; i < selectedFilters.length; i++){
              result.push({
                label: Facets[selectedFilters[i]],
                value: selectedFilters[i]
              });
            }
+         }
            cache[ term ] = json;
           // console.log(result);
            resp(result);
