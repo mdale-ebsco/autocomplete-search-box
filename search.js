@@ -1,10 +1,9 @@
 $( document ).ready(function() {
 
   var Facets = {
-          PeerReviewed: "Peer Reviewed Articles",
-          Catalog: "The Library Catalog"
+          RV: "Peer Reviewed Articles",
+          FC: "The Library Catalog"
   };
-  var facetsadded = false;
 
   var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
   var filters = jQuery("#eds-autocorrect-searchbox").data("f");
@@ -12,13 +11,6 @@ $( document ).ready(function() {
     return item.trim();
   });
   console.log(selectedFilters);
-
-  var divs = "";
-  var d;
-  for(var i=0;i<selectedFilters.length;i++){
-    d = '<li id="filter-'+selectedFilters[i]+'" class="ui-menu-item"><div class="ui-menu-item-wrapper ac-filter" id="ui-id-'+i+'"tabindex="-1">Limit Search to '+Facets[selectedFilters[i]]+'</div></li>';
-    divs = divs.concat(d);
-  }
 
   var autocompleteToken = "";
 
@@ -37,10 +29,11 @@ $( document ).ready(function() {
            for(var i = 0; i < selectedFilters.length; i++){
              result.push({
                label: Facets[selectedFilters[i]],
-               value: Facets[selectedFilters[i]]
+               value: selectedFilters[i]
              });
            }
            cache[ term ] = json;
+           console.log(result);
            resp(result);
          });
        },
@@ -48,8 +41,11 @@ $( document ).ready(function() {
          var value = ui.item.value;
 
          for(var j = 0; j<selectedFilters.length; j++){
-           if(Facets[selectedFilters[j]] == value){
+           if(selectedFilters[j] == value){
              ui.item.value = result[0].value;
+             console.log(document.getElementById("fname"));
+             document.getElementById("fname").value = value;
+             document.getElementById("fvalue").value = "Y";
            }
          }
 
