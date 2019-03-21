@@ -1,17 +1,13 @@
 <html>
 
 <head>
+  <!--Required jQuery files-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <!--The below file needs to be placed on a server with an IP address registered in EBSCOadmin with a group containing an API profile -->
-  <script src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
+  <script id="eds-autocorrect-searchbox" data-c="uphoenix" data-f="RV,FT" src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
+  <link rel="stylesheet" href="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.css">
 
-  <style>
-  .userprovided {
-    font-weight:bold;
-  }
-  </style>
 </head>
 
 <body>
@@ -27,15 +23,13 @@
       <input name="groupid" value="main" type="hidden">
       <input name="profile" value="eds" type="hidden">
       <!-- Search box and Submit button -->
-      <input id="EDS-query" type="text" name="bquery" value="">
+      <!--Input Element must keep 'eds-autocomplete' classname-->
+      <input id="EDS-query" class="eds-autocomplete" type="text" name="bquery" value="">
       <button type="submit">Search</button>
+      <input id="fname" name="cli0" value="" type="hidden">
+      <input id="fvalue" name="clv0" value="" type="hidden">
     </form>
-    <section id="EDS-autocomplete"></section>
   </div>
-
-
-  <script>
-  </script>
 </body>
 
 </html>
