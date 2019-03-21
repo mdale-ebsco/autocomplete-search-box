@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script id="eds-autocorrect-searchbox" data-c="uphoenix" src="//widgets.ebscohost.com/prod/simplekey/autocomplete-searchbox/search.js"></script>
+  <script id="eds-autocorrect-searchbox" data-c="uphoenix" data-f="PeerReviewed,Catalog" src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
   <link rel="stylesheet" href="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.css">
 
 </head>
@@ -26,6 +26,9 @@
       <!--Input Element must keep 'eds-autocomplete' classname-->
       <input id="EDS-query" class="eds-autocomplete" type="text" name="bquery" value="">
       <button type="submit">Search</button>
+      <input name="cli0" value="" type="hidden">
+      <input name="clv0" value="" type="hidden">
+      <input id="filter" name="filter" value="" type="hidden">
     </form>
   </div>
 </body>

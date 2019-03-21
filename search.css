@@ -40,3 +40,12 @@ body {
 .userprovided {
   font-weight:bold;
 }
+
+.ac-filter{
+  margin-left:20px;
+  font: italic 11px Georgia, serif;
+}
+
+#filter-PeerReviewed {
+  height:30px;
+}
