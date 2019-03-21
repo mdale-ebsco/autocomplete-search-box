@@ -3,11 +3,12 @@ $( document ).ready(function() {
   var Facets = {
           RV: "Peer Reviewed Articles",
           FC: "The Library Catalog",
-          FT: "Full Text Available"
+          FT: "Full Text Available Online",
+          FT1: "Full Text Available in Print or Online"
   };
 
   var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
-  var filters = jQuery("#eds-autocorrect-searchbox").data("f");
+  var filters = jQuery("#eds-autocorrect-searchbox").data("filters");
   var selectedFilters = [];
   if(filters){
     selectedFilters = filters.split(',').map(function(item){
@@ -57,13 +58,11 @@ $( document ).ready(function() {
         $("#fvalue").val("N");
        },
        open: function(event, ui){
-         var filterfirst = jQuery(".ui-menu li:first-child" );
-         var filtersecondtolast = jQuery(".ui-menu li:nth-last-child(2)" );
-         var filterlast = jQuery(".ui-menu li:nth-last-child(1)" );
-
-         filterfirst.after(filtersecondtolast);
-         filterfirst.after(filterlast);
-
+         for(var i = 0; i < selectedFilters.length; i++){
+           var filterfirst = jQuery(".ui-menu li:first-child" );
+           var filterlast = jQuery(".ui-menu li:nth-last-child(1)" );
+           filterfirst.after(filterlast);
+         }
        },
        focus: function(event, ui){
          if(selectedFilters.includes(ui.item.value)){
