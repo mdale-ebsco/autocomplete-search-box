@@ -4,7 +4,8 @@ $( document ).ready(function() {
           RV: "Peer Reviewed Articles",
           FC: "The Library Catalog",
           FT: "Full Text Available Online",
-          FT1: "Full Text Available in Print or Online"
+          FT1: "Full Text Available in Print or Online",
+          FC1: "Institutional Repository"
   };
 
   var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
@@ -15,6 +16,7 @@ $( document ).ready(function() {
       return item.trim();
     });
   }
+  console.log(selectedFilters);
 
   var autocompleteToken = "";
 
@@ -43,19 +45,20 @@ $( document ).ready(function() {
        },
        select: function(event, ui){
          var value = ui.item.value;
-
+         console.log(value);
          if(selectedFilters.includes(value)){
              ui.item.value = result[0].value;
              $("#fname").val(value);
              $("#fvalue").val("Y");
          }
-
+        event.preventDefault();
         $(".eds-autocomplete").val(ui.item.value);
         $("#EDS-search-form").submit();
 
         //reset html inputs
         $("#fname").val("");
         $("#fvalue").val("N");
+        ui.item.value = value;
        },
        open: function(event, ui){
          for(var i = 0; i < selectedFilters.length; i++){
@@ -65,6 +68,7 @@ $( document ).ready(function() {
          }
        },
        focus: function(event, ui){
+         console.log(ui.item.value);
          if(selectedFilters.includes(ui.item.value)){
            event.preventDefault();
            $(".eds-autocomplete").val(result[0].value);
@@ -74,7 +78,9 @@ $( document ).ready(function() {
 
   $(".eds-autocomplete").autocomplete( "instance" )._renderItem = function( ul, item) {
       var items;
+      console.log(item.value);
       if(selectedFilters.includes(item.value)){
+        console.log("Included");
         items = $( "<li>" )
           .append( "<div class='filter-label'>limit to " + item.label + "</div>" )
           .appendTo( ul );
