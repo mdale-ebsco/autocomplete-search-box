@@ -41,11 +41,7 @@ body {
   font-weight:bold;
 }
 
-.ac-filter{
-  margin-left:20px;
-  font: italic 11px Georgia, serif;
-}
-
-#filter-PeerReviewed {
-  height:30px;
+.filter-label {
+  padding-left:20px!important;
+  font:italic 12px Arial;
 }

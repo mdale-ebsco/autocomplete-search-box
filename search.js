@@ -3,7 +3,7 @@ $( document ).ready(function() {
   var Facets = {
           RV: "Peer Reviewed Articles",
           FC: "The Library Catalog",
-          FT: "Full Text"
+          FT: "Full Text Available"
   };
 
   var custid = jQuery("#eds-autocorrect-searchbox").data("c").trim();
@@ -41,19 +41,18 @@ $( document ).ready(function() {
        select: function(event, ui){
          var value = ui.item.value;
 
-         for(var j = 0; j<selectedFilters.length; j++){
-           if(selectedFilters[j] == value){
+         if(selectedFilters.includes(value)){
              ui.item.value = result[0].value;
-             document.getElementById("fname").value = value;
-             document.getElementById("fvalue").value = "Y";
-           }
+             $("#fname").val(value);
+             $("#fvalue").val("Y");
          }
 
         $(".eds-autocomplete").val(ui.item.value);
         $("#EDS-search-form").submit();
 
-        document.getElementById("fname").value = "";
-        document.getElementById("fvalue").value = "N";
+        //reset html inputs
+        $("#fname").val("");
+        $("#fvalue").val("N");
        },
        open: function(event, ui){
          var filterfirst = jQuery(".ui-menu li:first-child" );
@@ -65,14 +64,25 @@ $( document ).ready(function() {
 
        },
        focus: function(event, ui){
-         $(".eds-autocomplete").val(ui.item.value);
+         if(selectedFilters.includes(ui.item.value)){
+           event.preventDefault();
+           $(".eds-autocomplete").val(result[0].value);
+         }
        }
   });
 
   $(".eds-autocomplete").autocomplete( "instance" )._renderItem = function( ul, item) {
-    var items = $( "<li>" )
-      .append( "<div class='ac-label'>" + item.label + "</div>" )
-      .appendTo( ul );
+      var items;
+      if(selectedFilters.includes(item.value)){
+        items = $( "<li>" )
+          .append( "<div class='filter-label'>limit to " + item.label + "</div>" )
+          .appendTo( ul );
+      }
+      else{
+        items = $( "<li>" )
+          .append( "<div class='ac-label'>" + item.label + "</div>" )
+          .appendTo( ul );
+      }
     return items;
   };
 
