@@ -16,7 +16,7 @@ $( document ).ready(function() {
       return item.trim();
     });
   }
-  console.log(selectedFilters);
+//  console.log(selectedFilters);
 
   var autocompleteToken = "";
 
@@ -39,13 +39,12 @@ $( document ).ready(function() {
              });
            }
            cache[ term ] = json;
-           console.log(result);
+          // console.log(result);
            resp(result);
          });
        },
        select: function(event, ui){
          var value = ui.item.value;
-         console.log(value);
          if(selectedFilters.includes(value)){
              ui.item.value = result[0].value;
              $("#fname").val(value);
@@ -68,7 +67,6 @@ $( document ).ready(function() {
          }
        },
        focus: function(event, ui){
-         console.log(ui.item.value);
          if(selectedFilters.includes(ui.item.value)){
            event.preventDefault();
            $(".eds-autocomplete").val(result[0].value);
@@ -78,9 +76,7 @@ $( document ).ready(function() {
 
   $(".eds-autocomplete").autocomplete( "instance" )._renderItem = function( ul, item) {
       var items;
-      console.log(item.value);
       if(selectedFilters.includes(item.value)){
-        console.log("Included");
         items = $( "<li>" )
           .append( "<div class='filter-label'>limit to " + item.label + "</div>" )
           .appendTo( ul );
