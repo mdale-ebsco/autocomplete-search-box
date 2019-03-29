@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
   var Facets = {
           RV: "Peer Reviewed Articles",
-          FC: "The Library Catalog",
+          FC: "the Library Catalog",
           FT: "Full Text Available Online",
           FT1: "Full Text Available in Print or Online",
           FC1: "Institutional Repository"
@@ -16,10 +16,26 @@ $( document ).ready(function() {
       return item.trim();
     });
   }
-//  console.log(selectedFilters);
 
-  var autocompleteToken = "";
+var TOKEN_URL = 'https://widgets.ebscohost.com/prod/simplekey/autocomplete/token.php?custid='+custid;
 
+function getToken() {
+    return $.ajax({
+        url : TOKEN_URL,
+        type: 'GET',
+        error: function (xhr, ajaxOptions, thrownError) {
+          console.log(xhr.status);
+          console.log(thrownError);
+          console.log(xhr.responseText);
+        }
+    });
+}
+
+getToken().done(doAutocomplete);
+
+function doAutocomplete(data){
+  var token = data.token;
+  console.log("Token generated: "+token);
   var cache = {};
   var result;
   $(".eds-autocomplete").autocomplete({
@@ -30,35 +46,45 @@ $( document ).ready(function() {
            resp( cache[ term ] );
            return;
          }
-         $.getJSON("https://f9q8ycr499.execute-api.us-east-1.amazonaws.com/dev/auto/"+ req.term, function(json) {
-           result = json;
-           if(result.length > 0){
-           for(var i = 0; i < selectedFilters.length; i++){
-             result.push({
-               label: Facets[selectedFilters[i]],
-               value: selectedFilters[i]
-             });
+         $.getJSON("https://f9q8ycr499.execute-api.us-east-1.amazonaws.com/prod/auto/"+ custid +"/"+ encodeURIComponent(token) +"/"+ encodeURIComponent(req.term), function(json) {
+          result = json;
+          if(result.length > 0){
+           if(result[0].error){
+             if($(".eds-autocomplete").hasClass('ui-autocomplete-input')){
+               $(".eds-autocomplete").autocomplete( "destroy" );
+             }
+             console.log("Token is expired");
+             getToken().done(doAutocomplete);
            }
-         }
+           else{
+             for(var i = 0; i < selectedFilters.length; i++){
+               result.push({
+                 label: Facets[selectedFilters[i]],
+                 value: selectedFilters[i]
+               });
+             }
+           }
+          }
            cache[ term ] = json;
           // console.log(result);
            resp(result);
          });
        },
        select: function(event, ui){
+         //TODO: create cli0 input elements dynamically
          var value = ui.item.value;
          if(selectedFilters.includes(value)){
              ui.item.value = result[0].value;
-             $("#fname").val(value);
-             $("#fvalue").val("Y");
+             $("input[name=cli0]").val(value);
+             $("input[name=clv0]").val("Y");
          }
         event.preventDefault();
         $(".eds-autocomplete").val(ui.item.value);
         $("#EDS-search-form").submit();
 
         //reset html inputs
-        $("#fname").val("");
-        $("#fvalue").val("N");
+        $("input[name=cli0]").val("");
+        $("input[name=clv0]").val("N");
         ui.item.value = value;
        },
        open: function(event, ui){
@@ -91,7 +117,7 @@ $( document ).ready(function() {
     return items;
   };
 
-
+}
 
 
 
