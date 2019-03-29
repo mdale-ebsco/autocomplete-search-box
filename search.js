@@ -35,7 +35,7 @@ getToken().done(doAutocomplete);
 
 function doAutocomplete(data){
   var token = data.token;
-  console.log("Token generated: "+token);
+  //console.log("Token generated: "+token);
   var cache = {};
   var result;
   $(".eds-autocomplete").autocomplete({
@@ -53,7 +53,7 @@ function doAutocomplete(data){
              if($(".eds-autocomplete").hasClass('ui-autocomplete-input')){
                $(".eds-autocomplete").autocomplete( "destroy" );
              }
-             console.log("Token is expired");
+             //console.log("Token is expired");
              getToken().done(doAutocomplete);
            }
            else{
