@@ -5,7 +5,10 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script id="eds-autocorrect-searchbox" data-c="uphoenix" data-filters="RV,FT,FT1" src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
+
+
+  <script id="eds-autocorrect-searchbox" data-c="uphoenix" data-filters="RV,FT,FT1,FC,FC1" src="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.js"></script>
+
   <link rel="stylesheet" href="//gss.ebscohost.com/mdale/Phoenix/autocomplete-search-box/search.css">
 
 </head>
@@ -19,15 +22,15 @@
       <input name="site" value="eds-live" type="hidden">
       <!-- Authentication type -->
       <input name="authtype" value="ip,guest" type="hidden">
-      <input name="custid" value="uphoenix" type="hidden">
+      <input name="custid" value="madale" type="hidden">
       <input name="groupid" value="main" type="hidden">
-      <input name="profile" value="eds" type="hidden">
+      <input name="profile" value="eds_main" type="hidden">
       <!-- Search box and Submit button -->
       <!--Input Element must keep 'eds-autocomplete' classname-->
-      <input id="EDS-query" class="eds-autocomplete" type="text" name="bquery" value="">
+      <input class="eds-autocomplete" type="text" name="bquery" value="">
       <button type="submit">Search</button>
-      <input id="fname" name="cli0" value="" type="hidden">
-      <input id="fvalue" name="clv0" value="" type="hidden">
+      <input name="cli0" value="" type="hidden">
+      <input name="clv0" value="" type="hidden">
     </form>
   </div>
 </body>

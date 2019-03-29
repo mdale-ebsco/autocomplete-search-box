@@ -1,11 +1,11 @@
 body {
-  font-family: Ariel, sans-serif;
+  font: 18px Ariel, sans-serif;
   background:#f2f2f2;
 }
 #EDS-search{
   width: 30%;
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 48%;
   transform: translate(-50%, -50%);
 }
@@ -17,17 +17,18 @@ body {
   float: left;
   width: 100%;
   border: 3px solid #0375B4;
-  padding: 5px;
-  height: 30px;
+  padding: 10px;
+  height: 40px;
   border-radius: 5px;
   outline: none;
   color: #373737;
+  font-size:18px;
 }
 #EDS-search button[type="submit"]{
   position: absolute;
   right: -80px;
   width: 75px;
-  height: 29px;
+  height: 39px;
   border: 1px solid #0375B4;
   background: #0375B4;
   text-align: center;
@@ -37,11 +38,12 @@ body {
   font-size: 20px;
 }
 
+/* These styles are required */
 .userprovided {
   font-weight:bold;
 }
 
 .filter-label {
   padding-left:20px!important;
-  font:italic 12px Arial;
+  font:italic 14px Arial;
 }
